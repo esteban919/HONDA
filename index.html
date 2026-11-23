@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explora la historia, los modelos y las leyendas de Honda. Conoce también la Honda XR 150L de mi garaje.">
+  <meta name="theme-color" content="#101114">
+  <title>Honda Ride — Pasión sobre dos ruedas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #e32027;
+      --red-dark: #b90f19;
+      --ink: #101114;
+      --panel: #191b20;
+      --muted: #a7a9b0;
+      --line: rgba(255,255,255,.12);
+      --wide: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: #f7f7f8;
+      font: 18px/1.55 "Barlow Condensed", Arial, sans-serif;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.05; text-transform: uppercase; letter-spacing: .025em; }
+    h1, h2 { font-weight: 900; }
+    h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 1rem; }
+    h3 { font-weight: 800; }
+    section { scroll-margin-top: 84px; }
+    .wrap { width: min(var(--wide), calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow { color: var(--red); text-transform: uppercase; font-weight: 800; letter-spacing: .18em; }
+    .muted { color: var(--muted); }
+    .section-pad { padding-block: 92px; }
+    .section-intro { max-width: 700px; margin-bottom: 32px; }
+    .section-intro p { color: var(--muted); }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 16px; z-index: 100;
+      padding: 10px 14px; background: white; color: black;
+    }
+    .skip-link:focus { top: 10px; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(16,17,20,.94); border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav-bar { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { text-decoration: none; font-size: 1.65rem; font-weight: 900; letter-spacing: .08em; }
+    .brand span { color: var(--red); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { color: #dedee1; font-weight: 700; text-decoration: none; font-size: 1rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: white; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 5px; }
+    .menu-button { display: none; color: white; background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font: inherit; }
+
+    .hero {
+      min-height: min(760px, calc(100vh - 74px)); display: grid; align-items: center;
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse at 75% 48%, rgba(227,32,39,.2), transparent 40%),
+        linear-gradient(110deg, #121317, #1d1d21 55%, #101114);
+    }
+    .hero::after {
+      content: "RIDE"; position: absolute; right: -2vw; bottom: -11vw;
+      color: rgba(255,255,255,.025); font: 900 clamp(12rem, 33vw, 31rem)/.8 "Barlow Condensed", sans-serif;
+      pointer-events: none;
+    }
+    .hero-layout { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 28px; padding-block: 70px; position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(3.4rem, 8.5vw, 7.4rem); margin: 14px 0 20px; letter-spacing: -.025em; }
+    .hero h1 span { color: var(--red); }
+    .hero-copy > p:not(.eyebrow) { max-width: 480px; color: #c1c2c7; font-size: 1.3rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 10px 20px; border: 1px solid transparent; border-radius: 5px;
+      background: var(--red); color: white; text-decoration: none; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .04em; transition: transform .2s, background .2s, border-color .2s;
+    }
+    .button:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .button-outline { background: transparent; border-color: rgba(255,255,255,.45); }
+    .button-outline:hover { background: rgba(255,255,255,.08); border-color: white; }
+    .hero-bike { min-width: 0; position: relative; }
+    .hero-bike img { width: 100%; height: clamp(270px, 42vw, 470px); object-fit: contain; filter: drop-shadow(0 26px 35px rgba(0,0,0,.5)); }
+    .hero-label { position: absolute; bottom: 8px; right: 12px; color: #dadadd; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
+    .ticker { overflow: hidden; background: var(--red); padding: 11px 0; font-size: .95rem; font-weight: 900; text-align: center; letter-spacing: .19em; }
+
+    .panel { background: #15161a; }
+    .feature-grid, .legend-grid, .fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature-card, .legend-card, .fact-card {
+      border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 25px;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .feature-card:hover, .legend-card:hover, .fact-card:hover, .bike-card:hover {
+      transform: translateY(-5px); border-color: rgba(227,32,39,.8); box-shadow: 0 15px 34px rgba(0,0,0,.2);
+    }
+    .feature-icon { color: var(--red); font-size: 2rem; }
+    .feature-card h3, .legend-card h3 { font-size: 1.45rem; margin: 12px 0 8px; }
+    .feature-card p, .legend-card p, .fact-card p { color: var(--muted); margin-bottom: 0; }
+
+    .filter-area { display: grid; gap: 18px; margin: 28px 0 30px; }
+    .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+    .filter-label { width: 120px; color: #d3d4d7; font-weight: 800; text-transform: uppercase; }
+    .filter {
+      cursor: pointer; border: 1px solid rgba(255,255,255,.25); border-radius: 4px;
+      padding: 8px 13px; background: transparent; color: #e7e7e9; font: 700 1rem "Barlow Condensed", sans-serif;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .filter:hover, .filter[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: white; }
+    .filter:focus-visible, .button:focus-visible, a:focus-visible, .menu-button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+    .bike-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 19px; }
+    .bike-card {
+      min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px;
+      background: #1a1b20; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .bike-photo { width: 100%; height: 205px; object-fit: cover; background: #e9e9e9; }
+    .photo-note { display: block; padding: 4px 15px 0; color: #91939b; font-size: .82rem; }
+    .bike-info { padding: 13px 17px 19px; }
+    .bike-tag { display: inline-block; color: #ff686d; font-size: .92rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .bike-info h3 { font-size: 1.55rem; margin: 6px 0 9px; }
+    .bike-info p { margin-bottom: 9px; color: var(--muted); }
+    .bike-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; padding: 12px 0; margin: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .bike-specs span { font-size: .98rem; }
+    .bike-specs strong { color: white; }
+    .bike-link { color: white; font-weight: 800; text-underline-offset: 4px; }
+    .bike-link:hover { color: #ff686d; }
+    .result-count { margin: 17px 0 0; color: var(--muted); }
+    .disclaimer { margin-top: 24px; padding: 14px 17px; border-left: 3px solid var(--red); background: rgba(255,255,255,.04); color: var(--muted); }
+
+    .timeline { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 15px 28px; }
+    .timeline::before { content: ""; position: absolute; top: 12px; bottom: 12px; left: 50%; width: 2px; background: var(--red); opacity: .7; }
+    .timeline-card { position: relative; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 22px; transition: transform .22s ease, border-color .22s ease; }
+    .timeline-card:hover { transform: translateY(-4px); border-color: var(--red); }
+    .timeline-card:nth-child(even) { margin-top: 28px; }
+    .timeline-card time { color: var(--red); font-size: 1.8rem; font-weight: 900; }
+    .timeline-card h3 { margin: 5px 0 8px; font-size: 1.35rem; }
+    .timeline-card p { margin-bottom: 0; color: var(--muted); }
+    .legend-card { overflow: hidden; padding: 0; }
+    .legend-card img { height: 210px; width: 100%; object-fit: cover; background: #dedede; }
+    .legend-copy { padding: 20px; }
+    .fact-grid { grid-template-columns: repeat(4, 1fr); }
+    .fact-number { color: var(--red); font-size: 2.8rem; line-height: 1; font-weight: 900; }
+    .fact-card h3 { font-size: 1.25rem; margin: 12px 0 8px; }
+
+    /* La sección personal mantiene HTML básico para que sea fácil de estudiar. */
+    #mi-moto { background: linear-gradient(125deg, #191a1f, #101114); }
+    .garage-title { font-family: "Permanent Marker", cursive; color: var(--red); font-size: clamp(2rem, 5vw, 3.4rem); transform: rotate(-1deg); }
+    .xr-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; }
+    .xr-photo { width: 100%; height: 350px; object-fit: contain; background: #f4f4f4; border-radius: 10px; }
+    .xr-data { padding-left: 22px; color: #d0d1d5; }
+    .xr-data li { padding: 4px 0; }
+
+    .contact { text-align: center; background: linear-gradient(120deg, #251316, #141519); }
+    .contact p { color: var(--muted); }
+    footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); }
+    .footer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .footer-row p { margin: 0; }
+    .footer-row a { color: white; }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .95rem; }
+      .bike-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .fact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      html { scroll-padding-top: 68px; }
+      .wrap { width: min(100% - 30px, var(--wide)); }
+      .section-pad { padding-block: 68px; }
+      .nav-bar { min-height: 66px; flex-wrap: wrap; }
+      .menu-button { display: block; }
+      .nav-links { display: none; width: 100%; padding: 0 0 15px; flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 2px; border-top: 1px solid var(--line); }
+      .hero { min-height: auto; }
+      .hero-layout { grid-template-columns: 1fr; padding-block: 56px 35px; gap: 10px; }
+      .hero h1 { font-size: clamp(3.35rem, 15vw, 5rem); }
+      .hero-bike img { height: 270px; }
+      .hero-label { bottom: 0; }
+      .feature-grid, .legend-grid { grid-template-columns: 1fr; }
+      .bike-grid { grid-template-columns: 1fr; }
+      .bike-photo { height: 230px; }
+      .filter-label { width: 100%; }
+      .timeline { grid-template-columns: 1fr; padding-left: 18px; }
+      .timeline::before { left: 5px; }
+      .timeline-card:nth-child(even) { margin-top: 0; }
+      .xr-layout { grid-template-columns: 1fr; gap: 22px; }
+      .xr-photo { height: 270px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <nav class="wrap mx-auto nav-bar" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">HONDA<span>/</span>RIDE</a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">☰ Menú</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#mundo">Honda</a>
+        <a href="#modelos">Modelos</a>
+        <a href="#historia">Historia</a>
+        <a href="#leyendas">Leyendas</a>
+        <a href="#curiosidades">Datos</a>
+        <a href="#mi-moto">Mi moto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <!-- Portada -->
+    <section class="hero" id="inicio">
+      <div class="wrap mx-auto hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">El camino empieza aquí</p>
+          <h1>HONDA —<br><span>PASIÓN SOBRE</span><br>DOS RUEDAS</h1>
+          <p>Del primer viaje por la ciudad a la ruta que siempre soñaste: descubre un mundo creado para rodar.</p>
+          <div class="hero-actions">
+            <a class="button" href="#modelos">Explorar modelos ↓</a>
+            <a class="button button-outline" href="#historia">Conocer la historia</a>
+          </div>
+        </div>
+        <div class="hero-bike">
+          <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Honda_CBR1000RR_Fireblade.jpg/960px-Honda_CBR1000RR_Fireblade.jpg" alt="Motocicleta deportiva Honda CBR1000RR Fireblade" fetchpriority="high">
+          <span class="hero-label">ADN de competición · Fireblade</span>
+        </div>
+      </div>
+    </section>
+    <div class="ticker" aria-label="Potencia, aventura, tecnología y libertad">POTENCIA　·　AVENTURA　·　TECNOLOGÍA　·　LIBERTAD　·　POTENCIA</div>
+
+    <!-- La marca -->
+    <section class="wrap mx-auto section-pad" id="mundo">
+      <div class="section-intro">
+        <p class="eyebrow">Una marca, muchos caminos</p>
+        <h2>Encuentra tu forma de rodar</h2>
+        <p>Honda crea motocicletas para el uso diario, la aventura, los viajes y la pista. Cada estilo tiene su propio carácter y una manera distinta de vivir el camino.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><span class="feature-icon" aria-hidden="true">⚙</span><h3>Ingeniería japonesa</h3><p>Décadas de diseño y desarrollo aplicadas a motos para distintos estilos de conducción.</p></article>
+        <article class="feature-card"><span class="feature-icon" aria-hidden="true">↗</span><h3>Versatilidad real</h3><p>Modelos urbanos, doble propósito y touring para ir más allá del recorrido de todos los días.</p></article>
+        <article class="feature-card"><span class="feature-icon" aria-hidden="true">🏁</span><h3>Espíritu de carrera</h3><p>La competición es parte de la historia de Honda y de su búsqueda constante de rendimiento.</p></article>
+      </div>
+    </section>
+
+    <!-- Catálogo y filtros -->
+    <section class="panel section-pad" id="modelos">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="eyebrow">El garaje Honda</p>
+          <h2>Una moto para cada aventura</h2>
+          <p>Filtra por cilindrada y estilo. Las cifras de potencia y algunas especificaciones son aproximadas: cambian según el año y el mercado.</p>
+        </div>
+        <div class="filter-area" aria-label="Filtros de motocicletas">
+          <div class="filter-row" id="ccFilters" aria-label="Filtrar por cilindrada">
+            <span class="filter-label">Cilindrada</span>
+            <button class="filter" type="button" data-cc="all" aria-pressed="true">Todas</button>
+            <button class="filter" type="button" data-cc="100-125" aria-pressed="false">100–125 cc</button>
+            <button class="filter" type="button" data-cc="150-190" aria-pressed="false">150–190 cc</button>
+            <button class="filter" type="button" data-cc="200-350" aria-pressed="false">200–350 cc</button>
+            <button class="filter" type="button" data-cc="400-500" aria-pressed="false">400–500 cc</button>
+            <button class="filter" type="button" data-cc="600-750" aria-pressed="false">600–750 cc</button>
+            <button class="filter" type="button" data-cc="900-1100" aria-pressed="false">900–1100 cc</button>
+            <button class="filter" type="button" data-cc="over-1100" aria-pressed="false">Más de 1100 cc</button>
+          </div>
+          <div class="filter-row" id="typeFilters" aria-label="Filtrar por categoría">
+            <span class="filter-label">Estilo</span>
+            <button class="filter" type="button" data-type="all" aria-pressed="true">Todos</button>
+            <button class="filter" type="button" data-type="Deportiva" aria-pressed="false">Deportivas</button>
+            <button class="filter" type="button" data-type="Naked" aria-pressed="false">Naked</button>
+            <button class="filter" type="button" data-type="Doble propósito" aria-pressed="false">Doble propósito</button>
+            <button class="filter" type="button" data-type="Touring" aria-pressed="false">Touring</button>
+            <button class="filter" type="button" data-type="Urbana" aria-pressed="false">Urbanas</button>
+          </div>
+        </div>
+        <div class="bike-grid" id="bikeGrid"></div>
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <p class="disclaimer">Catálogo educativo: los modelos y sus versiones pueden variar por país. Las fotografías son referencias visuales; algunas corresponden a otros años o versiones del mismo modelo. Potencia estimada en hp.</p>
+      </div>
+    </section>
+
+    <!-- Historia de Honda -->
+    <section class="wrap mx-auto section-pad" id="historia">
+      <div class="section-intro">
+        <p class="eyebrow">Desde Japón hacia el mundo</p>
+        <h2>Una historia de ideas y movimiento</h2>
+        <p>Soichiro Honda fue un mecánico e inventor apasionado por los motores. Junto a Takeo Fujisawa convirtió esa pasión en una compañía con presencia mundial.</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline-card"><time datetime="1946">1946</time><h3>Un taller de investigación</h3><p>Soichiro Honda funda el Honda Technical Research Institute en Hamamatsu, Japón, para desarrollar motores.</p></article>
+        <article class="timeline-card"><time datetime="1948">1948</time><h3>Nace Honda Motor Co.</h3><p>Soichiro Honda y Takeo Fujisawa establecen la compañía que impulsaría la expansión de la marca.</p></article>
+        <article class="timeline-card"><time datetime="1958">1958</time><h3>La Super Cub</h3><p>Honda presenta la Super Cub, una motocicleta práctica cuyo diseño se convertiría en un icono global.</p></article>
+        <article class="timeline-card"><time datetime="1959">1959</time><h3>Honda llega al TT</h3><p>La marca participa por primera vez en el Tourist Trophy de la Isla de Man y se abre paso en la competición internacional.</p></article>
+        <article class="timeline-card"><time datetime="1969">1969</time><h3>La revolucionaria CB750</h3><p>La CB750 Four lleva un motor de cuatro cilindros y freno delantero de disco a una nueva generación de motos de calle.</p></article>
+        <article class="timeline-card"><time datetime="1992">1992</time><h3>Debuta la FireBlade</h3><p>La CBR900RR FireBlade inaugura una familia de deportivas reconocida por su enfoque ligero y rendimiento.</p></article>
+      </div>
+    </section>
+
+    <!-- Modelos legendarios -->
+    <section class="panel section-pad" id="leyendas">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="eyebrow">Máquinas que hicieron historia</p>
+          <h2>Modelos legendarios</h2>
+          <p>Innovación, aventura y millones de kilómetros: estas motocicletas representan distintas épocas del legado Honda.</p>
+        </div>
+        <div class="legend-grid">
+          <article class="legend-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Honda_Super_Cub_with_watering_can.jpg/960px-Honda_Super_Cub_with_watering_can.jpg" alt="Honda Super Cub clásica, motocicleta urbana" loading="lazy">
+            <div class="legend-copy"><h3>Super Cub</h3><p>Presentada en 1958, se convirtió en una de las motocicletas más influyentes y reconocibles del mundo.</p></div>
+          </article>
+          <article class="legend-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Honda_CBR1000RR_Fireblade.jpg/960px-Honda_CBR1000RR_Fireblade.jpg" alt="Honda CBR Fireblade de estilo deportivo" loading="lazy">
+            <div class="legend-copy"><h3>CBR Fireblade</h3><p>Una saga de motos deportivas que lleva el espíritu de pista a las carreteras desde 1992.</p></div>
+          </article>
+          <article class="legend-card">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/2020_Honda_CRF1100L_Africa_Twin_MT.jpg/960px-2020_Honda_CRF1100L_Africa_Twin_MT.jpg" alt="Honda Africa Twin de aventura" loading="lazy">
+            <div class="legend-copy"><h3>Africa Twin</h3><p>Una viajera de aventura inspirada por los rallyes y pensada para recorrer largas distancias.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curiosidades -->
+    <section class="wrap section-pad" id="curiosidades">
+      <div class="section-intro">
+        <p class="eyebrow">Pequeños datos, gran historia</p>
+        <h2>Honda en cifras e ideas</h2>
+      </div>
+      <div class="fact-grid">
+        <article class="fact-card"><div class="fact-number">100M+</div><h3>Super Cub producidas</h3><p>La familia Super Cub superó los 100 millones de unidades producidas en 2017.</p></article>
+        <article class="fact-card"><div class="fact-number">1958</div><h3>Una moto para todos</h3><p>La Super Cub C100 fue diseñada para ser fácil de conducir y útil en la vida cotidiana.</p></article>
+        <article class="fact-card"><div class="fact-number">4</div><h3>Cilindros en línea</h3><p>La CB750 de 1969 popularizó el motor de cuatro cilindros en línea entre las motos de calle.</p></article>
+        <article class="fact-card"><div class="fact-number">TT</div><h3>Espíritu competitivo</h3><p>Honda debutó en las carreras del Tourist Trophy de la Isla de Man en 1959.</p></article>
+      </div>
+    </section>
+
+    <!-- Mi motocicleta: HTML básico para que sea fácil de estudiar y explicar. -->
+    <section class="section-pad" id="mi-moto">
+      <div class="wrap">
+        <p class="garage-title">Mi garaje</p>
+        <h2>MI MOTO — HONDA XR 150L</h2>
+        <div class="xr-layout">
+          <div>
+            <img class="xr-photo" src="hp.jpg" alt="Honda XR 150L roja y negra, fotografía guardada en el proyecto" loading="lazy">
+            <p class="muted">Mi Honda XR 150L: una moto versátil para la ciudad y los caminos rurales.</p>
+          </div>
+          <div>
+            <h3>Características principales</h3>
+            <p class="muted">La XR 150L es una motocicleta doble propósito, cómoda para los recorridos diarios y preparada para salir del asfalto.</p>
+            <ul class="xr-data">
+              <li>Cilindraje: aproximadamente 149 cc.</li>
+              <li>Motor: monocilíndrico, cuatro tiempos.</li>
+              <li>Transmisión: manual de 5 velocidades.</li>
+              <li>Refrigeración: por aire.</li>
+              <li>Capacidad del tanque: alrededor de 12 litros.</li>
+              <li>Tipo: doble propósito.</li>
+            </ul>
+            <p class="muted">Las especificaciones pueden variar ligeramente según el año y el país.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enlace de contacto -->
+    <section class="contact section-pad" id="contacto">
+      <div class="wrap">
+        <p class="eyebrow">Tu próxima ruta te espera</p>
+        <h2>¿Listo para salir?</h2>
+        <p>Consulta los modelos disponibles y sus especificaciones en el sitio de Honda Colombia.</p>
+        <a class="button" href="https://motos.honda.com.co/motos-honda" target="_blank" rel="noopener noreferrer">Visitar Honda Colombia ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <p class="brand">HONDA<span>/</span>RIDE</p>
+      <p>Proyecto educativo no oficial · Fotografías de referencia de Wikimedia Commons.</p>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Datos resumidos: la potencia y algunas versiones dependen del mercado y el año.
+    const motorcycles = [
+      {name:"Honda Navi", cc:"110 cc", group:"100-125", type:"Urbana", engine:"Monocilíndrico, 4T", power:"8 hp", feature:"Automática CVT", description:"Compacta y sencilla para moverse por la ciudad.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Honda_Navi_100.jpg/960px-Honda_Navi_100.jpg", alt:"Honda Navi de color rojo", source:"https://commons.wikimedia.org/wiki/File:Honda_Navi_100.jpg"},
+      {name:"Honda Wave 110", cc:"109 cc", group:"100-125", type:"Urbana", engine:"Monocilíndrico, 4T", power:"8 hp", feature:"Caja rotativa", description:"Una compañera económica y práctica para el día a día.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/2026_Honda_Wave_110_Special_Edition_%28Alloy_Type%29.jpg/960px-2026_Honda_Wave_110_Special_Edition_%28Alloy_Type%29.jpg", alt:"Honda Wave 110, motocicleta urbana", source:"https://commons.wikimedia.org/wiki/File:2026_Honda_Wave_110_Special_Edition_(Alloy_Type).jpg"},
+      {name:"Honda CB125F", cc:"124 cc", group:"100-125", type:"Urbana", engine:"Monocilíndrico, 4T", power:"10.7 hp", feature:"Inyección PGM-FI", description:"Una moto ligera, rendidora y lista para los trayectos urbanos.", image:"https://upload.wikimedia.org/wikipedia/commons/e/e8/Example_of_a_2015_model_CB125F._.png", alt:"Honda CB125F de 2015", source:"https://commons.wikimedia.org/wiki/File:Example_of_a_2015_model_CB125F._.png"},
+      {name:"Honda XR125L", cc:"125 cc", group:"100-125", type:"Doble propósito", engine:"Monocilíndrico, 4T", power:"11 hp", feature:"Suspensión de largo recorrido", description:"Una trail ligera, preparada para calles y caminos mixtos.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Honda_XR_150L_Police_Motorcycle_PNP.jpg/960px-Honda_XR_150L_Police_Motorcycle_PNP.jpg", alt:"Honda de la familia XR, fotografía referencial de una XR150L", source:"https://commons.wikimedia.org/wiki/File:Honda_XR_150L_Police_Motorcycle_PNP.jpg"},
+      {name:"Honda XR150L", cc:"149 cc", group:"150-190", type:"Doble propósito", engine:"Monocilíndrico, 4T", power:"12 hp", feature:"5 velocidades · refrigerada por aire", description:"Versátil y resistente, pensada para el uso diario y los caminos rurales.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Honda_XR_150L_Police_Motorcycle_PNP.jpg/960px-Honda_XR_150L_Police_Motorcycle_PNP.jpg", alt:"Honda XR150L doble propósito", source:"https://commons.wikimedia.org/wiki/File:Honda_XR_150L_Police_Motorcycle_PNP.jpg"},
+      {name:"Honda CB150R", cc:"150 cc", group:"150-190", type:"Naked", engine:"Monocilíndrico, 4T", power:"16 hp", feature:"Inyección · frenos ABS según versión", description:"Una naked compacta con detalles deportivos y estilo moderno.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/2023_Honda_CB150R_ABS.jpg/960px-2023_Honda_CB150R_ABS.jpg", alt:"Honda CB150R ABS", source:"https://commons.wikimedia.org/wiki/File:2023_Honda_CB150R_ABS.jpg"},
+      {name:"Honda CBR150R", cc:"150 cc", group:"150-190", type:"Deportiva", engine:"Monocilíndrico, 4T", power:"17 hp", feature:"Carrocería deportiva", description:"Estética inspirada en las motos de pista para disfrutar cada curva.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/2021_Honda_CBR150R_ABS.jpg/960px-2021_Honda_CBR150R_ABS.jpg", alt:"Honda CBR150R ABS deportiva", source:"https://commons.wikimedia.org/wiki/File:2021_Honda_CBR150R_ABS.jpg"},
+      {name:"Honda CB190R", cc:"184 cc", group:"150-190", type:"Naked", engine:"Monocilíndrico, 4T", power:"16 hp", feature:"Diseño streetfighter", description:"Una naked urbana de postura erguida y líneas musculosas.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/2023_Honda_CB150R_ABS.jpg/960px-2023_Honda_CB150R_ABS.jpg", alt:"Honda naked de la familia CB, fotografía referencial", source:"https://commons.wikimedia.org/wiki/File:2023_Honda_CB150R_ABS.jpg"},
+      {name:"Honda XR190L", cc:"184 cc", group:"200-350", type:"Doble propósito", engine:"Monocilíndrico, 4T", power:"16 hp", feature:"Suspensión de largo recorrido", description:"Una trail versátil para combinar ciudad, carretera y caminos destapados.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Honda_XR_150L_Police_Motorcycle_PNP.jpg/960px-Honda_XR_150L_Police_Motorcycle_PNP.jpg", alt:"Honda trail de la familia XR, fotografía referencial de una XR150L", source:"https://commons.wikimedia.org/wiki/File:Honda_XR_150L_Police_Motorcycle_PNP.jpg"},
+      {name:"Honda CB300F", cc:"293 cc", group:"200-350", type:"Naked", engine:"Monocilíndrico, 4T", power:"24 hp", feature:"ABS según versión", description:"Una naked ágil para la ciudad y para escapadas de fin de semana.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/HondaCB300F.jpg/960px-HondaCB300F.jpg", alt:"Honda CB300F naked", source:"https://commons.wikimedia.org/wiki/File:HondaCB300F.jpg"},
+      {name:"Honda CB300R", cc:"286 cc", group:"200-350", type:"Naked", engine:"Monocilíndrico, 4T", power:"31 hp", feature:"Estilo Neo Sports Café", description:"Ligera y minimalista, combina diseño clásico con detalles actuales.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/2022_Honda_CB300R.png/960px-2022_Honda_CB300R.png", alt:"Honda CB300R Neo Sports Café", source:"https://commons.wikimedia.org/wiki/File:2022_Honda_CB300R.png"},
+      {name:"Honda CRF300L", cc:"286 cc", group:"200-350", type:"Doble propósito", engine:"Monocilíndrico, 4T", power:"27 hp", feature:"Suspensión de largo recorrido", description:"Una dual sport liviana para explorar más allá del pavimento.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Honda_CRF300L_Rally.jpg/960px-Honda_CRF300L_Rally.jpg", alt:"Honda CRF300L Rally", source:"https://commons.wikimedia.org/wiki/File:Honda_CRF300L_Rally.jpg"},
+      {name:"Honda CB500F", cc:"471 cc", group:"400-500", type:"Naked", engine:"Bicilíndrico en paralelo", power:"47 hp", feature:"Refrigeración líquida · ABS", description:"Una naked equilibrada para aprender, viajar y recorrer la ciudad.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/20250701_Honda_CB500F_in_Lucca.JPG/960px-20250701_Honda_CB500F_in_Lucca.JPG", alt:"Honda CB500F en Lucca", source:"https://commons.wikimedia.org/wiki/File:20250701_Honda_CB500F_in_Lucca.JPG"},
+      {name:"Honda CBR500R", cc:"471 cc", group:"400-500", type:"Deportiva", engine:"Bicilíndrico en paralelo", power:"47 hp", feature:"Embrague asistido y antirrebote", description:"Carácter deportivo y posición cómoda para el día a día.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Honda_CBR500R_e-clutch.jpg/960px-Honda_CBR500R_e-clutch.jpg", alt:"Honda CBR500R deportiva", source:"https://commons.wikimedia.org/wiki/File:Honda_CBR500R_e-clutch.jpg"},
+      {name:"Honda NX500", cc:"471 cc", group:"400-500", type:"Doble propósito", engine:"Bicilíndrico en paralelo", power:"47 hp", feature:"Parabrisas y rueda delantera de 19 pulgadas", description:"Una crossover para combinar trayectos diarios y viajes.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/2023_Honda_NX500.jpg/960px-2023_Honda_NX500.jpg", alt:"Honda NX500 crossover", source:"https://commons.wikimedia.org/wiki/File:2023_Honda_NX500.jpg"},
+      {name:"Honda CBR600RR", cc:"599 cc", group:"600-750", type:"Deportiva", engine:"4 cilindros en línea", power:"119 hp", feature:"Control de tracción según versión", description:"Una supersport de media cilindrada nacida para la pista.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Honda_CBR600RR_2006_WSS.jpg/960px-Honda_CBR600RR_2006_WSS.jpg", alt:"Honda CBR600RR de competición", source:"https://commons.wikimedia.org/wiki/File:Honda_CBR600RR_2006_WSS.jpg"},
+      {name:"Honda CB650R", cc:"649 cc", group:"600-750", type:"Naked", engine:"4 cilindros en línea", power:"94 hp", feature:"Estilo Neo Sports Café", description:"Una naked de cuatro cilindros con diseño contemporáneo.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/2019_Honda_CB650R_%2820190428%29.jpg/960px-2019_Honda_CB650R_%2820190428%29.jpg", alt:"Honda CB650R Neo Sports Café", source:"https://commons.wikimedia.org/wiki/File:2019_Honda_CB650R_(20190428).jpg"},
+      {name:"Honda CBR650R", cc:"649 cc", group:"600-750", type:"Deportiva", engine:"4 cilindros en línea", power:"94 hp", feature:"Embrague antirrebote según versión", description:"Una deportiva de carretera con motor de cuatro cilindros.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/2023_Honda_CBR650R_E-Clutch.jpg/960px-2023_Honda_CBR650R_E-Clutch.jpg", alt:"Honda CBR650R E-Clutch", source:"https://commons.wikimedia.org/wiki/File:2023_Honda_CBR650R_E-Clutch.jpg"},
+      {name:"Honda XL750 Transalp", cc:"755 cc", group:"600-750", type:"Doble propósito", engine:"Bicilíndrico en paralelo", power:"92 hp", feature:"Control de tracción seleccionable", description:"Una aventurera de media cilindrada para viajes y caminos variados.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/2023_Honda_XL750_Transalp.jpg/960px-2023_Honda_XL750_Transalp.jpg", alt:"Honda XL750 Transalp", source:"https://commons.wikimedia.org/wiki/File:2023_Honda_XL750_Transalp.jpg"},
+      {name:"Honda CB1000R", cc:"998 cc", group:"900-1100", type:"Naked", engine:"4 cilindros en línea", power:"143 hp", feature:"Estilo Neo Sports Café", description:"Una naked de gran cilindrada con carácter y presencia.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Honda_CB1000R_02.jpg/960px-Honda_CB1000R_02.jpg", alt:"Honda CB1000R", source:"https://commons.wikimedia.org/wiki/File:Honda_CB1000R_02.jpg"},
+      {name:"Honda CBR1000RR-R Fireblade", cc:"1000 cc", group:"900-1100", type:"Deportiva", engine:"4 cilindros en línea", power:"215 hp", feature:"Aerodinámica inspirada en competición", description:"La superbike insignia de Honda, desarrollada con ADN de carreras.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Honda_CBR1000RR-R_Fireblade_SP.jpg/960px-Honda_CBR1000RR-R_Fireblade_SP.jpg", alt:"Honda CBR1000RR-R Fireblade SP", source:"https://commons.wikimedia.org/wiki/File:Honda_CBR1000RR-R_Fireblade_SP.jpg"},
+      {name:"Honda Africa Twin 1100", cc:"1084 cc", group:"900-1100", type:"Doble propósito", engine:"Bicilíndrico en paralelo", power:"100 hp", feature:"Modos de conducción seleccionables", description:"Una aventurera para viajar lejos, en asfalto o fuera de él.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/2020_Honda_CRF1100L_Africa_Twin_MT.jpg/960px-2020_Honda_CRF1100L_Africa_Twin_MT.jpg", alt:"Honda CRF1100L Africa Twin", source:"https://commons.wikimedia.org/wiki/File:2020_Honda_CRF1100L_Africa_Twin_MT.jpg"},
+      {name:"Honda Gold Wing 1800", cc:"1833 cc", group:"over-1100", type:"Touring", engine:"6 cilindros opuestos", power:"125 hp", feature:"Confort y equipamiento para viajar", description:"Una gran turismo diseñada para recorrer largas distancias con comodidad.", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Honda_Gold_Wing_GL1800_White.jpg/960px-Honda_Gold_Wing_GL1800_White.jpg", alt:"Honda Gold Wing GL1800 blanca", source:"https://commons.wikimedia.org/wiki/File:Honda_Gold_Wing_GL1800_White.jpg"}
+    ];
+
+    const bikeGrid = document.getElementById("bikeGrid");
+    const resultCount = document.getElementById("resultCount");
+    const ccFilters = document.getElementById("ccFilters");
+    const typeFilters = document.getElementById("typeFilters");
+    let selectedCc = "all";
+    let selectedType = "all";
+
+    function renderMotorcycles() {
+      const visibleBikes = motorcycles.filter((bike) => {
+        const matchesCc = selectedCc === "all" || bike.group === selectedCc;
+        const matchesType = selectedType === "all" || bike.type === selectedType;
+        return matchesCc && matchesType;
+      });
+
+      bikeGrid.innerHTML = visibleBikes.map((bike) => `
+        <article class="bike-card">
+          <img class="bike-photo" src="${bike.image}" alt="${bike.alt}" loading="lazy">
+          <span class="photo-note">Imagen de referencia · Wikimedia Commons</span>
+          <div class="bike-info">
+            <span class="bike-tag">${bike.cc} · ${bike.type}</span>
+            <h3>${bike.name}</h3>
+            <p>${bike.description}</p>
+            <div class="bike-specs">
+              <span><strong>Motor:</strong> ${bike.engine}</span>
+              <span><strong>Potencia:</strong> aprox. ${bike.power}</span>
+              <span><strong>Destaca:</strong> ${bike.feature}</span>
+            </div>
+            <a class="bike-link" href="${bike.source}" target="_blank" rel="noopener noreferrer">Ver foto y fuente ↗</a>
+          </div>
+        </article>`).join("");
+
+      resultCount.textContent = `Mostrando ${visibleBikes.length} de ${motorcycles.length} motocicletas.`;
+    }
+
+    function setActiveFilter(container, selectedButton) {
+      container.querySelectorAll(".filter").forEach((button) => {
+        const isSelected = button === selectedButton;
+        button.setAttribute("aria-pressed", String(isSelected));
+      });
+    }
+
+    ccFilters.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-cc]");
+      if (!button) return;
+      selectedCc = button.dataset.cc;
+      setActiveFilter(ccFilters, button);
+      renderMotorcycles();
+    });
+
+    typeFilters.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-type]");
+      if (!button) return;
+      selectedType = button.dataset.type;
+      setActiveFilter(typeFilters, button);
+      renderMotorcycles();
+    });
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    renderMotorcycles();
+  </script>
+</body>
+</html>
